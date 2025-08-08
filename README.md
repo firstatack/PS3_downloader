@@ -42,7 +42,15 @@ Este script requiere los siguientes programas instalados en tu sistema:
 - [`jq`](https://stedolan.github.io/jq/) – parser JSON para línea de comandos
 - [`libray`](https://github.com/firstatack/libray) – herramienta para desencriptar backups de PS3 (debes compilarla o usar binario disponible)
 
-Puedes instalar todo ejecutando el script `instalar_dependencias.sh` incluido en este repositorio.
+Puedes instalar todo ejecutando el script `install_deps.sh` incluido en este repositorio.
+
+**Nota**, puede ocurrir que en alguna distribucion como ubuntu corriendo en docker la instalacion de libray de haga en un carpeta fuera del **PATH** y eso haga que falle el script , solo añadid la nueva ruta al path. 
+
+Ejemplo :
+
+```bash
+'export PATH="$HOME/.local/share/pipx/venvs/libray/bin:$PATH"
+```
 
 ---
 
@@ -53,15 +61,27 @@ Una vez tengamos la herramienta de python de ia nos tocara configurarla para ell
 ```bash
 ia configure # esto nos da un promt para introducir el usario y la contraseña de internet archive
 ```
-Con todo instalado solo que modificar alrededor de la linea 123 el parametro donde quieras que se guarden los ficheros procesados de libray.
+Con todo instalado solo que modificar alrededor de la linea 121 el parametro donde quieras que se guarden los ficheros procesados de libray.
+
+```bash
+FINAL_DEST_PATH="/you/path/here" #Modificar a la ruta deseada
+```
 
 ```bash
 chmod +x descargar_ps3.sh
 ./descargar_ps3.sh
 ```
+
+## Resumen de instalacion
+
+1. -Ejecutar install_deps.sh
+2. -Ejecutar **ia configure**
+3. -Comprobar si libray esta en el PATH (si esta ejecutar ps3_downloader.sh y si no agregalo al PATH)
+
 ## 🙏 Créditos
 
-Script creado por firstatack
+Script creado por firstatack.
+
 Inspirado en la necesidad de que los originales se rallan y no andan.
 
 ## ⚠️ Aviso legal
